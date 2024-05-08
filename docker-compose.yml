@@ -1,32 +1,23 @@
 
-version: '3'
 services:
-  frontend:
-    build: ./computer_shop_frontend # Ruta al directorio del frontend
-    ports:
-      - "8081:8081" # Puertos para acceder al frontend
-    depends_on:
-      - backend
 
   backend:
-    build: ./Computer_shop_backend # Ruta al directorio del backend
+    build: ./Computer_shop_backend 
     ports:
-      - "8080:8080" # Puertos para acceder al backend
+      - "8080:8080" 
+    depends_on:
+      - mysql
     environment:
       - DB_HOST=db
-      # Otras variables de entorno necesarias para la conexión a la base de datos
 
-  db:
+
+  mysql:
     image: mysql:latest
     ports:
-      - "3306:3306" # Puerto de MySQL
-    environment:
-      MYSQL_ROOT_PASSWORD: example_password
-      MYSQL_DATABASE: example_database
-      MYSQL_USER: example_user
-      MYSQL_PASSWORD: example_password
+      - "3307:3306" 
     volumes:
       - db_data:/var/lib/mysql
-
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
 volumes:
   db_data:
