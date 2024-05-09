@@ -2,13 +2,15 @@ import {DataSource} from "typeorm"
 import Producto from "./models/products"
 import  Usuario  from "./models/usuarios";
 import Carrito from "./models/Carrito";
+import {config} from "dotenv"
+config()
 
 export const AppDataSource= new DataSource({
     type: "mysql",
-    host:"localhost",
-    port:3306,
+    host:process.env.MYSQLDB_HOST,
+    port:+(process.env.MYSQLDB_DOCKER_PORT!),
     username:"root",
-    password:"1234",
+    password:process.env.MYSQLDB_ROOT_PASWORD,
     database:"backend",
     synchronize:true,
     logging:true,
