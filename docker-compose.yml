@@ -4,27 +4,28 @@ services:
   backend:
     build: ./Computer_shop_backend 
     env_file: ./.env
+    restart: always
+      
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     depends_on:
       - mysql
     environment:
-      - DB_HOST=$MYSQLDB_HOST
-      - DB_PASSWORD=$MYSQLDB_PASWORD
-      - DB_NAME=$MYSQLDB_DATABASE
-      - DB_PORT=$MYSQLDB_DOCKER_PORT
-
-
+      - MYSQLDB_HOST=mysql
+      - MYSQLDB_PASSWORD=1234
+      - MYSQLDB_DATABASE=db
+      - MYSQLDB_DOCKER_PORT=3306
 
   mysql:
     image: mysql:latest
     env_file: ./.env
     ports:
-      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+      - 3307:3306
     volumes:
       - db_data:/var/lib/mysql
     environment:
-        - MYSQL_ROOT_PASWORD=$MYSQLDB_ROOT_PASWORD
-        - MYSQL_DATABASE=$MYSQLDB_DATABASE
+        - MYSQL_PASSWORD=1234
+        - MYSQL_ROOT_PASSWORD=1234
+        - MYSQL_DATABASE=db
 volumes:
   db_data:

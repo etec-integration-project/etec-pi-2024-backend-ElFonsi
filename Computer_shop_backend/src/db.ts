@@ -11,7 +11,7 @@ export const AppDataSource= new DataSource({
     port:+(process.env.MYSQLDB_DOCKER_PORT!),
     username:"root",
     password:process.env.MYSQLDB_ROOT_PASWORD,
-    database:"backend",
+    database:process.env.MYSQLDB_DATABASE,
     synchronize:true,
     logging:true,
     entities:[Producto, Usuario, Carrito],
