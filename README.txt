@@ -13,5 +13,5 @@ cd [direccion de la carpeta del proyecto]
 
 docker compose up --build -d
 
-4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina localhost:8080 , si podemos apreciar el mensaje: "The sedulous hyena ate the antelope!" es porque todo esta corriendo correctamente!
+4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/ping , si podemos apreciar el reloj es porque la base de datos esta activa
 
