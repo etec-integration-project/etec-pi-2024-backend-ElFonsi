@@ -13,5 +13,5 @@ cd [direccion de la carpeta del proyecto]
 
 docker compose up --build -d
 
-4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/ping , si podemos apreciar el reloj es porque la base de datos esta activa
+4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/productos , si podemos apreciar los productos de la base de datos es porque la base de datos esta activa
 
