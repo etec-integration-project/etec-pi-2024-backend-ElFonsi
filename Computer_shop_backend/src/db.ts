@@ -10,14 +10,15 @@ export const AppDataSource= new DataSource({
     host:process.env.MYSQLDB_HOST,
     port:+(process.env.MYSQLDB_DOCKER_PORT!),
     username:"root",
-    password:process.env.MYSQLDB_ROOT_PASWORD,
-    database:process.env.MYSQLDB_DATABASE,
+    password:"1234",
+    database:"db",
     synchronize:true,
     logging:true,
     entities:[Producto, Usuario, Carrito],
     subscribers:[],
     migrations:[]
 })
+
 
 
 
