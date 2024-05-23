@@ -107,10 +107,11 @@ export const login = async (req: Request, res: Response) => {
 
 export const registerCart = async (req: Request, res: Response) => {
   const { cartJson } = req.body;
+  const cartObj= JSON.parse(cartJson);
 
   try {
 
-      const cartEntity = new Carrito(cartJson);
+      const cartEntity = new Carrito(cartObj.nombre, cartObj.cantidad, cartObj.precio);
 
       await AppDataSource.manager.save(Carrito, cartEntity);
 

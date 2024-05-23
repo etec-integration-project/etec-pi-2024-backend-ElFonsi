@@ -6,9 +6,17 @@ export default class Carrito {
     id!: number;
 
     @Column()
-    carro: string;
+    nombre!:string
 
-    constructor(carro: string ) {
-        this.carro = carro;
+    @Column()
+    cantidad!: number
+
+    @Column()
+    precio!: number
+
+    constructor(nombre:string, precio:number, cantidad:number) {
+        this.nombre= nombre;
+        this.precio= precio;
+        this.cantidad=cantidad;
     }
 }
