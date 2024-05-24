@@ -6,6 +6,9 @@ export default class Carrito {
     id!: number;
 
     @Column()
+    idProd!: number
+
+    @Column()
     nombre!:string
 
     @Column()
@@ -14,7 +17,8 @@ export default class Carrito {
     @Column()
     precio!: number
 
-    constructor(nombre:string, precio:number, cantidad:number) {
+    constructor(idProd:number, nombre:string, precio:number, cantidad:number) {
+        this.idProd= idProd;
         this.nombre= nombre;
         this.precio= precio;
         this.cantidad=cantidad;

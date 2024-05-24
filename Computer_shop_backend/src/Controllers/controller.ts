@@ -5,6 +5,7 @@ import  Usuario  from "../models/usuarios";
 import Carrito from "../models/Carrito";
 // import { DeepPartial } from '
 import * as bcrypt from 'bcrypt'
+// import { Console } from "console";
 
 
 export const llamar_productos = async(_: Request, res: Response) => {
@@ -107,13 +108,16 @@ export const login = async (req: Request, res: Response) => {
 
 export const registerCart = async (req: Request, res: Response) => {
   const { cartJson } = req.body;
+  console.log(cartJson , "--------------------------------------------------------------------------")
   const cartObj= JSON.parse(cartJson);
-
+  console.log(cartObj , "--------------------------------------------------------------------------")
+  // const usuarioRepository = AppDataSource.getRepository(Usuario);
   try {
 
-      const cartEntity = new Carrito(cartObj.nombre, cartObj.cantidad, cartObj.precio);
-
+    for (const producto of cartObj) {
+      const cartEntity = new Carrito(producto.id, producto.nombre, producto.precio, producto.cantidad);
       await AppDataSource.manager.save(Carrito, cartEntity);
+    }
 
       return res.status(201).json({ message: 'Carrito registrado exitosamente' });
 
