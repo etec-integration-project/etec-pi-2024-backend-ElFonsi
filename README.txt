@@ -19,10 +19,10 @@ docker compose up --build -d
 
 4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/productos , http://localhost:3000/ , si podemos apreciar los productos de la base de datos es porque la base de datos esta activa
 
--------------------------------------------------------SPRINT 2 DOCUMENTACIÓN---------------------------------------------------------------------
+-------------------------------------------------------SPRINT 2 DOCUMENTACIÓN--------------------------
 
 En este sprint me enfoque en arreglar la tabla Carrito ya que esta solo mostraba un string con la compra 
-realizada y queria modificar eso.
+realizada y queria modificar eso. Tambien logre levantar el frontend junto con el backend con docker compose
 
 Primero modifique en el front-end este codigo para que recibiera mas parametros (nombre, cantidad, precio)
 
@@ -54,3 +54,6 @@ Esto lo hice para poder colocar todas estas variables del cartJson en una nueva 
     }
 
 Con esto ya lograria que la tabla carrito este muestre correctamente los objetivos que has sido comprados.
+
+Para levantar el frontend con docker compose primero cree un nuevo Dockerfile
+
