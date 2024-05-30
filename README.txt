@@ -9,9 +9,48 @@ encuentra nuestro proyecto(el proyecto lo encontraremos en la carpeta de donde l
 
 cd [direccion de la carpeta del proyecto]
 
-3_ Ahora ejecutaremos el commando para levantar la aplicacion
+3_Estando posicionados sobre la carpeta etec-pi-2024-backend-ElFonsi vamos a clonar el frontend con elsiguiente commando
+
+git clone https://github.com/etec-integration-project/etec-pi-2024-frontend-ElFonsi.git // o // git@github.com:etec-integration-project/etec-pi-2024-frontend-ElFonsi.git
+
+4_ Ahora ejecutaremos el commando para levantar la aplicacion
 
 docker compose up --build -d
 
-4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/productos , si podemos apreciar los productos de la base de datos es porque la base de datos esta activa
+4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/productos , http://localhost:3000/ , si podemos apreciar los productos de la base de datos es porque la base de datos esta activa
 
+-------------------------------------------------------SPRINT 2 DOCUMENTACIÓN---------------------------------------------------------------------
+
+En este sprint me enfoque en arreglar la tabla Carrito ya que esta solo mostraba un string con la compra 
+realizada y queria modificar eso.
+
+Primero modifique en el front-end este codigo para que recibiera mas parametros (nombre, cantidad, precio)
+
+const CarroFiltrado = Object.values(carrito).map(({ id, nombre, cantidad, precio }) => ({ id, nombre, cantidad, precio }));
+
+Luego coloque mas columnas a la tabla Carrito en el backend
+
+@Column()
+    idProd!: number
+
+    @Column()
+    nombre!:string
+
+    @Column()
+    cantidad!: number
+
+    @Column()
+    precio!: number
+
+Y en el controller modifique la funcion registerCart y la variable cartJson la converti en un cartJson
+
+const cartObj= JSON.parse(cartJson);
+
+Esto lo hice para poder colocar todas estas variables del cartJson en una nueva cartEntity
+
+ for (const producto of cartObj) {
+      const cartEntity = new Carrito(producto.id, producto.nombre, producto.precio, producto.cantidad);
+      await AppDataSource.manager.save(Carrito, cartEntity);
+    }
+
+Con esto ya lograria que la tabla carrito este muestre correctamente los objetivos que has sido comprados.

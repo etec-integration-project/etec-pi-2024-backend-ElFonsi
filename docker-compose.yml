@@ -15,6 +15,12 @@ services:
       - MYSQLDB_PASSWORD=1234
       - MYSQLDB_DATABASE=db
       - MYSQLDB_DOCKER_PORT=3306
+    
+  frontend:
+    build: ./etec-pi-2024-frontend-ElFonsi
+    ports:
+      - 3000:3000
+    restart: always
 
   mysql:
     image: mysql:latest
