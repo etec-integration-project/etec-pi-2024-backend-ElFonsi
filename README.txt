@@ -9,7 +9,7 @@ encuentra nuestro proyecto(el proyecto lo encontraremos en la carpeta de donde l
 
 cd [direccion de la carpeta del proyecto]
 
-3_Estando posicionados sobre la carpeta etec-pi-2024-backend-ElFonsi vamos a clonar el frontend con elsiguiente commando
+3_Estando posicionados sobre la carpeta etec-pi-2024-backend-ElFonsi vamos a clonar el frontend con el siguiente commando
 
 git clone https://github.com/etec-integration-project/etec-pi-2024-frontend-ElFonsi.git // o // git@github.com:etec-integration-project/etec-pi-2024-frontend-ElFonsi.git
 
@@ -17,9 +17,9 @@ git clone https://github.com/etec-integration-project/etec-pi-2024-frontend-ElFo
 
 docker compose up --build -d
 
-4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/productos , http://localhost:3000/ , si podemos apreciar los productos de la base de datos es porque la base de datos esta activa
+4- Listo, si la aplicacion se levanto como corresponde nos dirigiremos al buscador y entraremos a esta pagina http://localhost:8080/productos , http://localhost:3000/ , si podemos apreciar los productos de la base de datos y podemos ver el inicio de la pagina es porque la base de datos esta activa y el frontend levantado.
 
--------------------------------------------------------SPRINT 2 DOCUMENTACIÓN--------------------------
+-------------------------------------------------------SPRINT 2 DOCUMENTACIÓN------------------------
 
 En este sprint me enfoque en arreglar la tabla Carrito ya que esta solo mostraba un string con la compra 
 realizada y queria modificar eso. Tambien logre levantar el frontend junto con el backend con docker compose
