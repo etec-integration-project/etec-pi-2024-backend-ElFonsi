@@ -57,3 +57,31 @@ Con esto ya lograria que la tabla carrito este muestre correctamente los objetiv
 
 Para levantar el frontend con docker compose primero cree un nuevo Dockerfile
 
+
+FROM node:latest
+
+
+WORKDIR /app
+
+
+COPY package*.json ./
+
+
+RUN npm install
+
+COPY . .
+
+
+EXPOSE 3000
+
+CMD ["npm","start"]
+
+Y despues en el backend agregue el frontend en el docker-compose.yml
+
+frontend:
+    build: ./etec-pi-2024-frontend-ElFonsi
+    ports:
+      - 3000:3000
+    restart: always
+
+Ya con esto he podido levantar el frontend correctamente.
