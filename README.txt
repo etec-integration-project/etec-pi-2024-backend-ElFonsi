@@ -85,3 +85,12 @@ frontend:
     restart: always
 
 Ya con esto he podido levantar el frontend correctamente.
+
+-------------------------------------------------------SPRINT 2 TDD------------------------
+
+Utilizando la libreria Mocha y Chai he estado tratando de testear todas las funcionalidades de mi proyecto programado en Typescript.
+
+Para eso cree un archivo controller.test.ts y agregue funciones que se encargan de probar los endpoints de mi proyecto, el problema 
+que tengo es que al intentar correr el archivo no me reconoce la extension.ts y esto ha logrado impedirme continuar con los testeos.
+
+He estado investigando como corregir este error pero no he sido exitoso, espero lograr corregir esto lo antes posible.
