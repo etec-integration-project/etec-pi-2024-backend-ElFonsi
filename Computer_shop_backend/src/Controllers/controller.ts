@@ -105,26 +105,29 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-
 export const registerCart = async (req: Request, res: Response) => {
-  const { cartJson } = req.body;
-  console.log(cartJson , "--------------------------------------------------------------------------")
-  const cartObj= JSON.parse(cartJson);
-  console.log(cartObj , "--------------------------------------------------------------------------")
-  // const usuarioRepository = AppDataSource.getRepository(Usuario);
-  try {
+  const { cartJson, userId } = req.body;
+  console.log(cartJson, "--------------------------------------------------------------------------");
+  const cartObj = JSON.parse(cartJson);
+  console.log(cartObj, "--------------------------------------------------------------------------");
+  console.log(userId)
 
-    for (const producto of cartObj) {
-      const cartEntity = new Carrito(producto.id, producto.nombre, producto.precio, producto.cantidad);
-      await AppDataSource.manager.save(Carrito, cartEntity);
-    }
+  try {
+      const usuario = await AppDataSource.manager.findOne(Usuario, { where: { id: userId } });
+
+      if (!usuario) {
+          return res.status(404).json({ error: 'Usuario no encontrado' });
+      }
+      for (const producto of cartObj) {
+          const cartEntity = new Carrito(producto.id, producto.nombre, producto.precio, producto.cantidad, usuario);
+          await AppDataSource.manager.save(Carrito, cartEntity);
+      }
 
       return res.status(201).json({ message: 'Carrito registrado exitosamente' });
-
   } catch (err) {
       console.error('Error al registrar el carrito:', err);
       return res.status(500).json({ error: 'Error interno del servidor' });
-  }  
+  }
 };
 
 // export const elim_producto =(req: Request, res: Response) => {
