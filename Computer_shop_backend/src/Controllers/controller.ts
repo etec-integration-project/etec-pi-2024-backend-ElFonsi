@@ -72,7 +72,7 @@ export const register = async (req: Request, res: Response) => {
     const hashedContraseña = await bcrypt.hash(contraseña, 10);
     const nuevoUsuario = usuarioRepository.create({ nombre, email, contraseña: hashedContraseña });
     await usuarioRepository.save(nuevoUsuario);
-    return res.status(201).send('Usuario registrado correctamente');
+    return res.status(201).json({ userId: nuevoUsuario.id }); 
   } catch (error) {
     console.error('Error al registrar usuario:', error);
     return res.status(500).send('Error interno del servidor');
@@ -94,8 +94,7 @@ export const login = async (req: Request, res: Response) => {
     const match = await bcrypt.compare(contraseña, usuario.contraseña);
 
     if (match) {
-      return res.status(200).send('Inicio de sesión exitoso');
-      
+      return res.status(200).json({ userId: usuario.id }); 
     } else {
       return res.status(401).send('Contraseña incorrecta');
     }
@@ -111,22 +110,29 @@ export const registerCart = async (req: Request, res: Response) => {
   const cartObj = JSON.parse(cartJson);
   console.log(cartObj, "--------------------------------------------------------------------------");
   console.log(userId)
+  
+  if (!userId || !cartJson) {
+    return res.status(400).json({ error: 'Falta información necesaria' });
+  }
 
   try {
-      const usuario = await AppDataSource.manager.findOne(Usuario, { where: { id: userId } });
+    const usuario = await AppDataSource.manager.findOne(Usuario, { where: { id: userId } });
 
-      if (!usuario) {
-          return res.status(404).json({ error: 'Usuario no encontrado' });
-      }
-      for (const producto of cartObj) {
-          const cartEntity = new Carrito(producto.id, producto.nombre, producto.precio, producto.cantidad, usuario);
-          await AppDataSource.manager.save(Carrito, cartEntity);
-      }
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
 
-      return res.status(201).json({ message: 'Carrito registrado exitosamente' });
+    const cartObj = JSON.parse(cartJson);
+
+    for (const producto of cartObj) {
+      const cartEntity = new Carrito(producto.id, producto.nombre, producto.precio, producto.cantidad, userId);
+      await AppDataSource.manager.save(Carrito, cartEntity);
+    }
+
+    return res.status(201).json({ message: 'Carrito registrado exitosamente' });
   } catch (err) {
-      console.error('Error al registrar el carrito:', err);
-      return res.status(500).json({ error: 'Error interno del servidor' });
+    console.error('Error al registrar el carrito:', err);
+    return res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
