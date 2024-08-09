@@ -249,6 +249,8 @@ if (product_exist.length == 0) {
                 producto19, producto20, producto21, producto22, producto23, producto24,
                 producto25, producto26
             ]);
+
+-------------------------------------------------------SPRINT 5 DOCUMENTACIÓN EN EL README DEL FRONT-END ---------------------------
              console.log(product_exist)
         }
 
