@@ -5,7 +5,7 @@ FROM node:latest
 WORKDIR /app
 
 
-COPY package*.json ./
+COPY ./Computer_shop_backend/package*.json ./
 
 
 RUN npm install
