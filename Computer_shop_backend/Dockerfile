@@ -2,7 +2,7 @@
 FROM node:latest
 
 
-WORKDIR /app
+WORKDIR /app/Computer_shop_backend
 
 
 COPY ./Computer_shop_backend/package*.json ./
