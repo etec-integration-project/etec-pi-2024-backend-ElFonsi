@@ -2,10 +2,10 @@
 FROM node:latest
 
 
-WORKDIR /app/Computer_shop_backend
+WORKDIR /app
 
 
-COPY ./Computer_shop_backend/package*.json ./
+COPY package*.json ./
 
 
 RUN npm install
