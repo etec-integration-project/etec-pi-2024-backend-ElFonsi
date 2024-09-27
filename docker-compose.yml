@@ -12,6 +12,7 @@ services:
       - MYSQL_PASSWORD=1234
       - MYSQL_ROOT_PASSWORD=1234
       - MYSQL_DATABASE=db
+      
     networks:
       - app-network
 
@@ -26,6 +27,8 @@ services:
       - MYSQLDB_HOST=mysql
       - MYSQLDB_PASSWORD=1234
       - MYSQLDB_DATABASE=db
+      - MYSQLDB_USERNAME=root
+      - MYSQLDB_DOCKER_PORT=3306
     depends_on:
       - mysql
     restart: always
