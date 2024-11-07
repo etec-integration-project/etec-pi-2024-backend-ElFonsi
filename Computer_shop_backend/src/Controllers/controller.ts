@@ -136,6 +136,27 @@ export const registerCart = async (req: Request, res: Response) => {
   }
 };
 
+export const registerProduct = async (req: Request, res: Response) => {
+  const { nombre, descripcion, precio, cantidad } = req.body;
+
+  if (!nombre || !descripcion || precio == null || cantidad == null) {
+    return res.status(400).json({ error: 'Falta información necesaria del producto' });
+  }
+
+  try {
+    const newProduct = new Producto(nombre, descripcion, precio, cantidad);
+
+    console.log(newProduct);
+
+    await AppDataSource.manager.save(Producto, newProduct);
+
+    return res.status(201).json({ message: 'Producto registrado exitosamente' });
+  } catch (err) {
+    console.error('Error al registrar el producto:', err);
+    return res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
 // export const elim_producto =(req: Request, res: Response) => {
 //   const modelo = req.params.modelo;
 // const index = Producto.findIndex((product) => product.modelo === modelo);

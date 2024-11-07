@@ -66,9 +66,10 @@ async function main() {
         }
 
         if (usuario_exist.length == 0){
-            const usuario1= new Usuario("Jero","jero@gmail.com","contraseña1")
+            const usuario1= new Usuario("Jero","jero@gmail.com","123456789")
             const usuario2 = new Usuario("Juan","juan@gmail.com","contraseña2")
-            AppDataSource.manager.save([usuario1, usuario2])
+            const usuarioAdmin = new Usuario("admin","admin@gmail.com","admin1234")
+            AppDataSource.manager.save([usuario1, usuario2, usuarioAdmin])
             console.log(usuario_exist)
         }
     }

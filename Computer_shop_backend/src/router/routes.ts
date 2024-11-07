@@ -1,6 +1,6 @@
 
 import express from "express";
-import { addProduct, llamar_productos, eliminarProducto, login, register, llamar_usuarios, registerCart } from "../Controllers/controller";
+import { registerProduct, addProduct, llamar_productos, eliminarProducto, login, register, llamar_usuarios, registerCart } from "../Controllers/controller";
 const inicial = express.Router()
 inicial.use(express.json());
 
@@ -8,7 +8,6 @@ inicial.get('/', (_, res) => {
     res.send('The sedulous hyena at tehe antelope!');
   });
 
-// Obtener todos los productos
 inicial.get("/productos", llamar_productos, llamar_usuarios)
 inicial.get("/usuarios", llamar_usuarios)
 
@@ -20,6 +19,8 @@ inicial.post('/login', login)
 inicial.post('/registrarse', register)
 
 inicial.post('/comprar', registerCart)
+
+inicial.post('/nuevoProducto', registerProduct);
 
 // Obtener productos cuyo precio sea mayor a 100
 // inicial.get("/productos/precio_alto", productos_mas100);
