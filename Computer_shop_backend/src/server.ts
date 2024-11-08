@@ -11,7 +11,7 @@ const app = express()
 app.use(morgan('dev'))
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:3000' // 'localhost' como predeterminado si no está definida
+    origin: process.env.CORS_ORIGIN  
   }));
   
 app.use(express.json())
