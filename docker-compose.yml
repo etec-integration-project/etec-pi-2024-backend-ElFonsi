@@ -39,6 +39,7 @@ services:
       - app-network
     environment:
       - REACT_APP_BACKEND=http://backend:8080
+      - CORS_ORIGIN=http://frontend:3000
 
 volumes:
   db_data:
