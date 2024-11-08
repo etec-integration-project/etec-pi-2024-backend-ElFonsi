@@ -44,6 +44,10 @@ services:
     restart: always
     networks:
       - app-network
+    enviroment:
+      - REACT_APP_BACKEND=backend
+      
+
 
 volumes:
   db_data:
