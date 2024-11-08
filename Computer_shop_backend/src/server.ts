@@ -9,7 +9,21 @@ import  Usuario  from "./models/usuarios";
 const app = express()
 
 app.use(morgan('dev'))
-app.use(cors())
+
+const allowedOrigins = ['http://backend:3000'];
+
+app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Origen no permitido por CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
+  
 app.use(express.json())
 
 app.use(userRoutes)
