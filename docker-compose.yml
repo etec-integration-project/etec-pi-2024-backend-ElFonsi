@@ -39,9 +39,9 @@ services:
       - app-network
       
   nginx:
-    image: nginx:latest
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    build:
+      context: https://github.com/etec-integration-project/etec-pi-2024-frontend-ElFonsi.git
+      dockerfile: nginx/Dockerfile
     ports:
       - "80:80"
     depends_on:
@@ -50,8 +50,6 @@ services:
     networks:
       - app-network
 
-volumes:
-  db_data:
-
 networks:
   app-network:
+    driver: bridge
