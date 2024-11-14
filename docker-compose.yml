@@ -39,9 +39,7 @@ services:
       - app-network
       
   nginx:
-    build:
-      context: https://github.com/etec-integration-project/etec-pi-2024-frontend-ElFonsi.git
-      dockerfile: nginx/Dockerfile
+    build: https://raw.githubusercontent.com/etec-integration-project/etec-pi-2024-backend-ElFonsi/refs/heads/main/nginx/Dockerfile
     ports:
       - "80:80"
     depends_on:
