@@ -4,23 +4,23 @@ import { registerProduct, addProduct, llamar_productos, eliminarProducto, login,
 const inicial = express.Router()
 inicial.use(express.json());
 
-inicial.get('/', (_, res) => {
+inicial.get('/api/', (_, res) => {
     res.send('The sedulous hyena at tehe antelope!');
   });
 
-inicial.get("/productos", llamar_productos, llamar_usuarios)
-inicial.get("/usuarios", llamar_usuarios)
+inicial.get("/api/productos", llamar_productos, llamar_usuarios)
+inicial.get("/api/usuarios", llamar_usuarios)
 
-inicial.post('/productos/añadirProducto', addProduct);
+inicial.post('/api/productos/añadirProducto', addProduct);
 
-inicial.delete('/productos/:nombre', eliminarProducto);
+inicial.delete('/api/productos/:nombre', eliminarProducto);
 
-inicial.post('/login', login)
-inicial.post('/registrarse', register)
+inicial.post('/api/login', login)
+inicial.post('/api/registrarse', register)
 
-inicial.post('/comprar', registerCart)
+inicial.post('/api/comprar', registerCart)
 
-inicial.post('/nuevoProducto', registerProduct);
+inicial.post('/api/nuevoProducto', registerProduct);
 
 // Obtener productos cuyo precio sea mayor a 100
 // inicial.get("/productos/precio_alto", productos_mas100);
