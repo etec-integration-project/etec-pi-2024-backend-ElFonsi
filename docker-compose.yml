@@ -38,7 +38,7 @@ services:
     networks:
       - app-network
     environment:
-      - REACT_APP_BACKEND=backend
+      - REACT_APP_BACKEND=
       
   nginx:
     build: 
