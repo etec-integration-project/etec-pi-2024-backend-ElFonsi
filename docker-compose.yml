@@ -41,7 +41,9 @@ services:
       - REACT_APP_BACKEND=backend
       
   nginx:
-    build: https://raw.githubusercontent.com/etec-integration-project/etec-pi-2024-backend-ElFonsi/refs/heads/main/nginx/Dockerfile
+    build: 
+      context: https://github.com/etec-integration-project/etec-pi-2024-backend-ElFonsi.git#main:nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
