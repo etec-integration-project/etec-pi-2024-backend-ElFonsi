@@ -37,6 +37,8 @@ services:
     restart: always
     networks:
       - app-network
+    environment:
+      - REACT_APP_BACKEND=backend
       
   nginx:
     build: https://raw.githubusercontent.com/etec-integration-project/etec-pi-2024-backend-ElFonsi/refs/heads/main/nginx/Dockerfile
