@@ -8,6 +8,32 @@ import * as bcrypt from 'bcrypt'
 // import { Console } from "console";
 
 
+export const llamar_productos_por_usuario = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const carritos = await AppDataSource.manager.find(Carrito, {
+      where: { userId: parseInt(id, 10) },
+    });
+
+    if (carritos.length === 0) {
+      res.status(404).json({ message: "No se encontraron productos para este usuario." });
+    }
+
+    const productos = carritos.map(carrito => ({
+      idProd: carrito.idProd,
+      nombre: carrito.nombre,
+      cantidad: carrito.cantidad,
+      precio: carrito.precio,
+    }));
+    
+    res.json(productos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error interno del servidor");
+  }
+};
+
 export const llamar_productos = async(_: Request, res: Response) => {
   try {
     const productos = await AppDataSource.manager.find(Producto);

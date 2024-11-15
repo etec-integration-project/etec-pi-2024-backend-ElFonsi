@@ -1,12 +1,15 @@
 
 import express from "express";
-import { registerProduct, addProduct, llamar_productos, eliminarProducto, login, register, llamar_usuarios, registerCart } from "../Controllers/controller";
+import { registerProduct, addProduct, llamar_productos, eliminarProducto, login, register, llamar_usuarios, registerCart, llamar_productos_por_usuario  } from "../Controllers/controller";
 const inicial = express.Router()
 inicial.use(express.json());
 
 inicial.get('/api/', (_, res) => {
     res.send('The sedulous hyena at tehe antelope!');
   });
+
+inicial.get('/api/productos/usuario/:id', llamar_productos_por_usuario);
+
 
 inicial.get("/api/productos", llamar_productos, llamar_usuarios)
 inicial.get("/api/usuarios", llamar_usuarios)
