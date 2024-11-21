@@ -2,6 +2,8 @@ services:
   mysql:
     image: mysql:latest
     container_name: mysql-container
+    volumes:
+      - db_data:/var/lib/mysql
     environment:
       - MYSQL_PASSWORD=1234
       - MYSQL_ROOT_PASSWORD=1234
@@ -49,6 +51,9 @@ services:
       - backend
     networks:
       - app-network
+  
+  volumes:
+    db_data:
 
 networks:
   app-network:
