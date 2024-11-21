@@ -17,7 +17,7 @@ export const llamar_productos_por_usuario = async (req: Request, res: Response) 
     });
 
     if (carritos.length === 0) {
-      res.status(404).json({ message: "No se encontraron productos para este usuario." });
+      return res.status(404).json({ message: "No se encontraron productos para este usuario." });
     }
 
     const productos = carritos.map(carrito => ({
@@ -26,13 +26,14 @@ export const llamar_productos_por_usuario = async (req: Request, res: Response) 
       cantidad: carrito.cantidad,
       precio: carrito.precio,
     }));
-    
-    res.json(productos);
+
+    return res.json(productos); // Asegúrate de usar `return` aquí también
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error interno del servidor");
+    return res.status(500).send("Error interno del servidor");
   }
 };
+
 
 export const llamar_productos = async(_: Request, res: Response) => {
   try {
